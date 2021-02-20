@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'myapp',
     'django.contrib.sites',
     'sitemanage',
+    'storages',
 ]
 
 SITE_ID = 1
@@ -127,9 +128,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIR = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_URL = 'myapp:loginuser'
 LOGIN_REDIRECT_URL = 'myapp:index'
 
+AWS_STORAGE_BUCKET_NAME = 'koyanagi-image'
+AWS_S3_CUSTUM_DOMAIN = '%s.s3-ap-northeast-1.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400'
+}
+AWS_LOCATION = 'media'
+
+DEFAULT_FILE_STORAGE = 'sfcproject.storage_backends.MediaStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/'
+MEDIA_URL = 'https://%s/%s/' % (AWS_S3_CUSTUM_DOMAIN, AWS_LOCATION)

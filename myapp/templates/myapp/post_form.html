@@ -7,7 +7,7 @@
         <br>
         <h2 class="">ツイート</h2>
         <br>
-        <form action="" class="" method="post">{% csrf_token %}
+        <form action="" class="" method="post" enctype="multipart/form-data">{% csrf_token %}
             <div class="form-group">
                 <label>タイトル</label>
                 {{ form.title }}
