@@ -1,0 +1,36 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-9">
+        <br>
+        <h2 class="">ツイート</h2>
+        <br>
+        <form action="" class="" method="post">{% csrf_token %}
+            <div class="form-group">
+                <label>タイトル</label>
+                {{ form.title }}
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label>内容</label>
+                {{ form.content }}
+            </div>
+            <br>
+            <div class="form-group">
+                <label>サムネイル</label>
+                {{ form.thumbnail }}
+            </div>
+            <br>
+            <div class="form-group">
+                <label>カテゴリ</label>
+                {{ form.category }}
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">投稿</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
